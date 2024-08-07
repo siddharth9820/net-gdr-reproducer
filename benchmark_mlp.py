@@ -90,7 +90,7 @@ if __name__ == "__main__":
     enable_timers()
     results = {}
     for H in [16384]:
-        tflops, time_per_iter = benchmark(B, S, H, N=N, overlap=False)
+        tflops, time_per_iter = benchmark(B, S, H, N=N, overlap=True)
         tflops = np.sort(tflops)
         results[H] = list(tflops)
         tflops_per_gpu = 64 * (B * G_depth) * S * N * H * H / 1e12 / time_per_iter / torch.distributed.get_world_size()
